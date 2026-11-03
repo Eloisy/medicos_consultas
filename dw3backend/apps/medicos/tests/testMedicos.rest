@@ -1,0 +1,43 @@
+### Fazer login
+# @name login
+POST http://localhost:40000/Login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Listar todos os médicos
+GET http://localhost:40000/getAllMedicos
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Buscar médico por ID
+GET http://localhost:40000/getMedicoByID/1
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Cadastrar médico
+POST http://localhost:40000/insertMedico
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "crm": "123456",
+    "nome": "João da Silva",
+    "especialidade": "Cardiologia"
+}
+
+### Atualizar médico
+PUT http://localhost:40000/updateMedico/1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "crm": "123496",
+    "nome": "João Silva Atualizado",
+    "especialidade": "Clínica Geral"
+}
+
+### Excluir médico
+DELETE http://localhost:40000/deleteMedico/1
+Authorization: Bearer {{login.response.body.$.token}}
