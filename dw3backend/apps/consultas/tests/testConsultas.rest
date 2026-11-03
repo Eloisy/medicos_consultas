@@ -1,0 +1,52 @@
+### Fazer login
+# @name login
+POST http://localhost:40000/Login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+
+### Listar todas as consultas
+GET http://localhost:40000/getAllConsultas
+Authorization: Bearer {{login.response.body.$.token}}
+
+
+### Buscar consulta por ID
+GET http://localhost:40000/getConsultaByID/1
+Authorization: Bearer {{login.response.body.$.token}}
+
+
+### Cadastrar consulta
+POST http://localhost:40000/insertConsulta
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "numeroconsulta": 1008,
+    "dataconsulta": "2026-11-10",
+    "valorconsulta": 150.00,
+    "observacoes": "Consulta de rotina",
+    "medicoid": 1
+}
+
+
+### Atualizar consulta
+PUT http://localhost:40000/updateConsulta/1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "numeroconsulta": 1001,
+    "dataconsulta": "2026-11-12",
+    "valorconsulta": 180.00,
+    "observacoes": "Consulta de rotina atualizada",
+    "medicoid": 1
+}
+
+
+### Excluir consulta
+DELETE http://localhost:40000/deleteConsulta/1
+Authorization: Bearer {{login.response.body.$.token}}
